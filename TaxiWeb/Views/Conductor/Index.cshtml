@@ -1,0 +1,96 @@
+﻿@model IEnumerable<TaxiWeb.Models.ConductorAfiliacion>
+
+@{
+    ViewBag.Title = "Conductores Actuales";
+}
+
+<h2>@ViewBag.title</h2>
+
+<p>
+    <a href='@Url.Action("Create","Conductor")' class="brand-logo">
+        <i class="medium material-icons">add_circle</i>
+    </a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Conductor.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Conductor.Apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Conductor.Cedula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Conductor.FechaNacimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Conductor.LicenciaConduccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Conductor.ExpiracionLicencia)
+        </th>
+        <th>
+            Placa Vehiculos
+        </th>
+        <th>
+            Número de Radicado
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Conductor.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Conductor.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Conductor.Cedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Conductor.FechaNacimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Conductor.LicenciaConduccion)
+            </td>
+            <td>
+                @item.Conductor.ExpiracionLicencia.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @for (var i = 0; i < item.Conductor.Vehiculo.Count; i++)
+                {
+                    var vehiculo = item.Conductor.Vehiculo.ElementAt(i);
+                    var placa = vehiculo.Placa;
+
+                    if (i < (item.Conductor.Vehiculo.Count - 1))
+                    {
+                        placa += ",";
+                    }
+
+                    {
+                        <span>@placa</span>
+                    }
+                }
+            </td>
+            <td>
+                @if (item.Radicado != 0)
+                {
+                    @Html.DisplayFor(modelItem => item.Radicado)
+                }
+
+            </td>
+
+            <td>
+                @Html.ActionLink("edit", "Edit", new { id = item.Conductor.Id }, new { @class = "material-icons" })
+                @Html.ActionLink("list", "Details", new { id = item.Conductor.Id }, new { @class = "material-icons" })
+                @Html.ActionLink("delete", "Delete", new { id = item.Conductor.Id }, new { @class = "material-icons" })
+            </td>
+        </tr>
+    }
+
+</table>

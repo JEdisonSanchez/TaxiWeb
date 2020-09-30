@@ -1,0 +1,58 @@
+﻿@model TaxiWeb.Models.Clase
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Clase</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaClase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaClase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreInstructor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreInstructor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraFin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdConductor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Conductor.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

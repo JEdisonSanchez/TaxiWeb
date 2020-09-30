@@ -1,0 +1,58 @@
+﻿@model IEnumerable<TaxiWeb.Models.Afiliacion>
+
+@{
+    ViewBag.Title = "Afiliaciones";
+}
+
+<h2>@ViewBag.title</h2>
+
+<p>
+    <a href='@Url.Action("Create","Afiliacion")' class="brand-logo">
+       <i class="medium material-icons">add_circle</i>
+    </a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaRadicado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cedula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreCompleto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Edad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.FechaRadicado.ToString("dd/MM/yyyy")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cedula)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreCompleto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Edad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valor)
+        </td>
+        <td>
+            @Html.ActionLink("edit", "Edit", new { id = item.Id }, new { @class = "material-icons" })
+            @Html.ActionLink("list", "Details", new { id = item.Id }, new { @class = "material-icons" })
+            @Html.ActionLink("delete", "Delete", new { id = item.Id }, new { @class = "material-icons" })
+</tr>
+}
+
+</table>

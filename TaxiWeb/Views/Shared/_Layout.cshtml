@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/materialize.js"></script>
+    <link href="~/Content/materialize.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="~/Scripts/scripts.js"></script>
+    <link href="~/Content/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="navbar-fixed">
+        <nav class="sidenav-trigger">
+            <div class="nav-wrapper yellow accent-2">
+                <a href='@Url.Action("Index","Home")'>
+                    <img src="~/Image/taxi.png" id="logo" />
+                </a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li data-target="slide-out" class="sidenav-trigger"><a href="#"><i class="material-icons">menu</i></a></li>
+                    <li>@Html.ActionLink("Conductor", "Index", "Conductor")</li>
+                    <li>@Html.ActionLink("Vehiculo", "Index", "Vehiculo")</li>
+                    <li>@Html.ActionLink("Afiliarme", "Create", "Afiliacion")</li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <ul id="slide-out" class="sidenav">
+        <li style="height:160px">
+            <div class="user-view">
+                <div class="background">
+                    <img src="~/Image/taxi2.jpg" />
+                </div>
+            </div>
+        </li>
+        <li>
+        <li>@Html.ActionLink("Afiliarme", "Create", "Afiliacion")</li>
+        <li><a class="waves-effect waves-light modal-trigger" href="#modal1">Iniciar Sesión</a></li>
+        <li><div class="divider"></div></li>
+        <li>@Html.ActionLink("Conductor","Create","Conductor")</li>
+        <li>@Html.ActionLink("Vehiculo", "Create", "Vehiculo")</li>
+        <li>@Html.ActionLink("Clase", "Create", "Clase")</li>
+    </ul>
+    <div class="row">
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h3>Iniciar Sesión</h3>
+                <form method="post" action='@Url.Action("Login","Home")'>
+                    <div class="input-field col s6">
+                        <input id="usuario" type="text" class="validate" name="usuario">
+                        <label for="usuario">Usuario</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="password" type="password" class="validate" name="password">
+                        <label for="contraseña">Contraseña</label>
+                    </div>
+                    <div>
+                        <input id="btnModal" class="btn" type="submit" name="name" value="Ingresar" />
+
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+
+
+    <div class="container body-content">
+        @RenderBody()
+        @*<hr />*@
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+        </footer>
+    </div>
+
+
+</body>
+</html>

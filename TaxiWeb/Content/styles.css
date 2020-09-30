@@ -1,0 +1,35 @@
+﻿nav ul a{
+    color:black;
+}
+.btn{
+    background-color: black;
+    margin-left:10px;
+}
+.btn:hover, .btn:focus{
+    background-color:dimgrey;
+}
+a.material-icons{
+    color: black;
+}
+a.brand-logo {
+    color: black;
+}
+.sidenav .user-view .background{
+    height: 160px;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;    
+}
+.navbar 
+.sidenav-trigger .material-icons {
+    color: black ;
+}
+#logo {
+    width: 60px;
+    margin-left: 10px;
+}
