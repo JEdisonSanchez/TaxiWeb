@@ -62,7 +62,7 @@
                 </div>
             </div>
         </li>
-        @if (usuarioLogado)
+        @if (usuarioSesion != null)
         {
             <li>@Html.ActionLink("Cerrar Sesión", "Logout", "Home")</li>
             <li><div class="divider"></div></li>
