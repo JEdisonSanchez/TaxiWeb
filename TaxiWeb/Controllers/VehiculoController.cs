@@ -26,18 +26,18 @@ namespace TaxiWeb.Controllers
             //vehiculo = vehiculo.Where(v => v.Placa == placa);
 
             // Listar los vehículos con conductores que más veces aparecen asociados en vehículo
-            var grupoVehiculo = (from v in db.Vehiculo
-                         group v by v.Conductor into vehiculogrupo
-                         select new
-                         {
-                             vehiculos = vehiculogrupo,
-                             conteo = vehiculogrupo.Count()
-                         });
-            var max = grupoVehiculo.Max(a => a.conteo);
-            var lista = grupoVehiculo.Where(a => a.conteo == max).Select(a => a.vehiculos).FirstOrDefault();
+            //var grupoVehiculo = (from v in db.Vehiculo
+            //             group v by v.Conductor into vehiculogrupo
+            //             select new
+            //             {
+            //                 vehiculos = vehiculogrupo,
+            //                 conteo = vehiculogrupo.Count()
+            //             });
+            //var max = grupoVehiculo.Max(a => a.conteo);
+            //var lista = grupoVehiculo.Where(a => a.conteo == max).Select(a => a.vehiculos).FirstOrDefault();
 
 
-            return View(lista.ToList());
+            return View(vehiculo.ToList());
         }
 
         // GET: Vehiculo/Details/5

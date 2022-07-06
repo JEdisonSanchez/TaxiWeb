@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var usuarioLogado = Context.User.Identity.IsAuthenticated;
+    var usuarioSesion = Context.Session["usuario"];
+    var nombreUsuario = string.Empty;
+    if (usuarioSesion != null)
+    {
+        nombreUsuario = usuarioSesion.ToString();
+    }
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -12,6 +21,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="~/Scripts/scripts.js"></script>
     <link href="~/Content/styles.css" rel="stylesheet" />
+    <script src="~/Scripts/login_ajax.js"></script>
 </head>
 <body>
     <div class="navbar-fixed">
@@ -22,9 +32,24 @@
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li data-target="slide-out" class="sidenav-trigger"><a href="#"><i class="material-icons">menu</i></a></li>
-                    <li>@Html.ActionLink("Conductor", "Index", "Conductor")</li>
-                    <li>@Html.ActionLink("Vehiculo", "Index", "Vehiculo")</li>
-                    <li>@Html.ActionLink("Afiliarme", "Create", "Afiliacion")</li>
+                    @if (usuarioSesion != null)
+                    {
+                        <li class="black-text">Bienvenido @nombreUsuario </li>
+                    }
+
+                    @if (usuarioSesion != null)
+                    {
+                        if (nombreUsuario.Equals("Jhon"))
+                        {
+                            <li>@Html.ActionLink("Conductor", "Index", "Conductor")</li>
+                            <li>@Html.ActionLink("Vehiculo", "Index", "Vehiculo")</li>
+                        }
+                        <li>@Html.ActionLink("Cerrar Sesión", "Logout", "Home")</li>
+                    }
+                    @*<li data-target="slide-out" class="sidenav-trigger"><a href="#"><i class="material-icons">menu</i></a></li>
+        <li>@Html.ActionLink("Conductor", "Index", "Conductor")</li>
+        <li>@Html.ActionLink("Vehiculo", "Index", "Vehiculo")</li>
+        <li>@Html.ActionLink("Afiliarme", "Create", "Afiliacion")</li>*@
                 </ul>
             </div>
         </nav>
@@ -37,34 +62,44 @@
                 </div>
             </div>
         </li>
-        <li>
-        <li>@Html.ActionLink("Afiliarme", "Create", "Afiliacion")</li>
+        @if (usuarioLogado)
+        {
+            <li>@Html.ActionLink("Cerrar Sesión", "Logout", "Home")</li>
+            <li><div class="divider"></div></li>
+            <li>@Html.ActionLink("Afiliarme", "Create", "Afiliacion")</li>
+            <li>@Html.ActionLink("Clase", "Create", "Clase")</li>
+        }
+        else
+        {
+            <li><a class="waves-effect waves-light modal-trigger" href="#modal1">Iniciar Sesión</a></li>
+        }
+        @*<li>@Html.ActionLink("Afiliarme", "Create", "Afiliacion")</li>
         <li><a class="waves-effect waves-light modal-trigger" href="#modal1">Iniciar Sesión</a></li>
         <li><div class="divider"></div></li>
-        <li>@Html.ActionLink("Conductor","Create","Conductor")</li>
+        <li>@Html.ActionLink("Conductor", "Create", "Conductor")</li>
         <li>@Html.ActionLink("Vehiculo", "Create", "Vehiculo")</li>
-        <li>@Html.ActionLink("Clase", "Create", "Clase")</li>
+        <li>@Html.ActionLink("Clase", "Create", "Clase")</li>*@
     </ul>
     <div class="row">
         <div id="modal1" class="modal">
             <div class="modal-content">
                 <h3>Iniciar Sesión</h3>
-                <form method="post" action='@Url.Action("Login","Home")'>
-                    <div class="input-field col s6">
-                        <input id="usuario" type="text" class="validate" name="usuario">
-                        <label for="usuario">Usuario</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="password" type="password" class="validate" name="password">
-                        <label for="contraseña">Contraseña</label>
-                    </div>
-                    <div>
-                        <input id="btnModal" class="btn" type="submit" name="name" value="Ingresar" />
+                @*<form method="post" action='@Url.Action("Login","Home")'>*@
+                <div class="input-field col s6">
+                    <input id="usuario" type="text" class="validate" name="usuario">
+                    <label for="usuario">Usuario</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="password" type="password" class="validate" name="password">
+                    <label for="contraseña">Contraseña</label>
+                </div>
+                <div>
+                    <input id="btnModal" class="btn" type="submit" name="name" value="Ingresar" onclick="loginUser()" />
 
-                    </div>
-                </form>
+                </div>
+                @*</form>*@
             </div>
-            
+
         </div>
     </div>
 
